@@ -22,7 +22,12 @@ set noswapfile
 set hlsearch		" search highlighting
 set nu
 if has("gui_running")	" GUI color and font settings
-  set guifont=Menlo-Regular:h12
+  let s:uname = system("echo -n \"$(uname)\"")
+  if !v:shell_error && s:uname == "Linux"
+    set guifont=Inconsolata\ 10
+  else
+    set guifont=Menlo-Regular:h12
+  endif
   set background=dark 
   set t_Co=256          " 256 color mode
   set cursorline        " highlight current line
@@ -276,7 +281,7 @@ filetype plugin indent on
 " vim-erlang-skeletons settings
 "--------------------------------------------------------------------------- 
 let g:erl_author="Chris Jimison"
-let g:erl_company="Not Rigged Games LLC"
+let g:erl_company="Merigo LLC"
 let g:erl_replace_buffer=1
 "let g:erl_tpl_diri="/dir to templates"
 
@@ -340,7 +345,7 @@ let g:tagbar_autofocus = 1
 " --- SnipMate
 let g:snipMateAllowMatchingDot = 0
 
-set noerrorbells visualbell t_vb=
+set noerrorbells novisualbell t_vb=
 
 " --- Rebar commands
 let g:loaded_nerdtree_rebar_menu = 1
