@@ -17,24 +17,6 @@ filetype plugin on    " Enable filetype-specific plugins
 autocmd! bufwritepost .vimrc source ~/.vimrc
 
 
-syntax on		" syntax highlight
-set noswapfile
-set hlsearch		" search highlighting
-set nu
-if has("gui_running")	" GUI color and font settings
-  let s:uname = system("echo -n \"$(uname)\"")
-  if !v:shell_error && s:uname == "Linux"
-    set guifont=Inconsolata\ 10
-  else
-    set guifont=Menlo-Regular:h12
-  endif
-  set background=dark 
-  set t_Co=256          " 256 color mode
-  set cursorline        " highlight current line
-  colors murphy 
-  highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
-endif
-
 set clipboard=unnamed	" yank to the system register (*) by default
 set showmatch		" Cursor shows matching ) and }
 set showmode		" Show current mode
@@ -59,6 +41,7 @@ set t_vb=
 set tm=500
 
 " TAB setting{
+   set tabstop=4
    set expandtab        "replace <TAB> with spaces
    set softtabstop=4 
    set shiftwidth=4 
@@ -270,6 +253,9 @@ Bundle 'bufexplorer.zip'
 Bundle 'scrooloose/syntastic'
 Bundle 'oscarh/vimerl'
 Bundle 'mbbx6spp/vim-rebar'
+Bundle 'scratch.vim'
+Bundle 'jonathanfilip/vim-lucius'
+Bundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on
 
@@ -351,3 +337,30 @@ set noerrorbells novisualbell t_vb=
 let g:loaded_nerdtree_rebar_menu = 1
 
 set foldlevel=99
+
+syntax on		" syntax highlight
+syntax enable
+set noswapfile
+set hlsearch		" search highlighting
+set nu
+
+
+if has("gui_running")	" GUI color and font settings
+  let s:uname = system("echo -n \"$(uname)\"")
+  if !v:shell_error && s:uname == "Linux"
+    set guifont=Inconsolata\ 10
+  else
+    set guifont=Menlo-Regular:h12
+  endif
+  set background=dark 
+  set t_Co=256          " 256 color mode
+  set cursorline        " highlight current line
+  " colors murphy 
+  " highlight CursorLine          guibg=#003853 ctermbg=24  gui=none cterm=none
+
+  colorscheme solarized
+  "let g:lucius_contrast='high'
+  "let g:lucius_contrast_bg='high'
+endif
+
+
